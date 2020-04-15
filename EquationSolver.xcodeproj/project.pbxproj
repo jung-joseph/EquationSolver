@@ -13,6 +13,8 @@
 		534BCECE244679390098EE80 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 534BCECD244679390098EE80 /* Assets.xcassets */; };
 		534BCED1244679390098EE80 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 534BCED0244679390098EE80 /* Preview Assets.xcassets */; };
 		534BCED4244679390098EE80 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 534BCED2244679390098EE80 /* LaunchScreen.storyboard */; };
+		534BCEDF24467ACD0098EE80 /* Gauss.swift in Sources */ = {isa = PBXBuildFile; fileRef = 534BCEDE24467ACD0098EE80 /* Gauss.swift */; };
+		534BCEE224474CE30098EE80 /* Equations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 534BCEE124474CE30098EE80 /* Equations.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +26,8 @@
 		534BCED0244679390098EE80 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		534BCED3244679390098EE80 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		534BCED5244679390098EE80 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		534BCEDE24467ACD0098EE80 /* Gauss.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Gauss.swift; sourceTree = "<group>"; };
+		534BCEE124474CE30098EE80 /* Equations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Equations.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +60,8 @@
 		534BCEC6244679380098EE80 /* EquationSolver */ = {
 			isa = PBXGroup;
 			children = (
+				534BCEE024474CC40098EE80 /* Equations */,
+				534BCEDD24467AA50098EE80 /* Gauss */,
 				534BCEC7244679380098EE80 /* AppDelegate.swift */,
 				534BCEC9244679380098EE80 /* SceneDelegate.swift */,
 				534BCECB244679380098EE80 /* ContentView.swift */,
@@ -73,6 +79,22 @@
 				534BCED0244679390098EE80 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		534BCEDD24467AA50098EE80 /* Gauss */ = {
+			isa = PBXGroup;
+			children = (
+				534BCEDE24467ACD0098EE80 /* Gauss.swift */,
+			);
+			path = Gauss;
+			sourceTree = "<group>";
+		};
+		534BCEE024474CC40098EE80 /* Equations */ = {
+			isa = PBXGroup;
+			children = (
+				534BCEE124474CE30098EE80 /* Equations.swift */,
+			);
+			path = Equations;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -147,8 +169,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				534BCEC8244679380098EE80 /* AppDelegate.swift in Sources */,
+				534BCEDF24467ACD0098EE80 /* Gauss.swift in Sources */,
 				534BCECA244679380098EE80 /* SceneDelegate.swift in Sources */,
 				534BCECC244679380098EE80 /* ContentView.swift in Sources */,
+				534BCEE224474CE30098EE80 /* Equations.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
