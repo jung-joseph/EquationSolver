@@ -15,6 +15,10 @@
 		534BCED4244679390098EE80 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 534BCED2244679390098EE80 /* LaunchScreen.storyboard */; };
 		534BCEDF24467ACD0098EE80 /* Gauss.swift in Sources */ = {isa = PBXBuildFile; fileRef = 534BCEDE24467ACD0098EE80 /* Gauss.swift */; };
 		534BCEE224474CE30098EE80 /* Equations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 534BCEE124474CE30098EE80 /* Equations.swift */; };
+		538515AD27A4A94C008DAA98 /* FileNamer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 538515AC27A4A94C008DAA98 /* FileNamer.swift */; };
+		538515AF27A5E746008DAA98 /* NewProblemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 538515AE27A5E746008DAA98 /* NewProblemView.swift */; };
+		538E50862448EE430055911E /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 538E50852448EE430055911E /* State.swift */; };
+		538E5089244C939E0055911E /* EquationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 538E5088244C939E0055911E /* EquationsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +32,10 @@
 		534BCED5244679390098EE80 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		534BCEDE24467ACD0098EE80 /* Gauss.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Gauss.swift; sourceTree = "<group>"; };
 		534BCEE124474CE30098EE80 /* Equations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Equations.swift; sourceTree = "<group>"; };
+		538515AC27A4A94C008DAA98 /* FileNamer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileNamer.swift; sourceTree = "<group>"; };
+		538515AE27A5E746008DAA98 /* NewProblemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewProblemView.swift; sourceTree = "<group>"; };
+		538E50852448EE430055911E /* State.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = State.swift; sourceTree = "<group>"; };
+		538E5088244C939E0055911E /* EquationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EquationsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,11 +68,12 @@
 		534BCEC6244679380098EE80 /* EquationSolver */ = {
 			isa = PBXGroup;
 			children = (
+				538E5087244C93780055911E /* Views */,
 				534BCEE024474CC40098EE80 /* Equations */,
 				534BCEDD24467AA50098EE80 /* Gauss */,
 				534BCEC7244679380098EE80 /* AppDelegate.swift */,
 				534BCEC9244679380098EE80 /* SceneDelegate.swift */,
-				534BCECB244679380098EE80 /* ContentView.swift */,
+				538E50852448EE430055911E /* State.swift */,
 				534BCECD244679390098EE80 /* Assets.xcassets */,
 				534BCED2244679390098EE80 /* LaunchScreen.storyboard */,
 				534BCED5244679390098EE80 /* Info.plist */,
@@ -97,6 +106,17 @@
 			path = Equations;
 			sourceTree = "<group>";
 		};
+		538E5087244C93780055911E /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				534BCECB244679380098EE80 /* ContentView.swift */,
+				538E5088244C939E0055911E /* EquationsView.swift */,
+				538515AC27A4A94C008DAA98 /* FileNamer.swift */,
+				538515AE27A5E746008DAA98 /* NewProblemView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -124,7 +144,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1140;
-				LastUpgradeCheck = 1140;
+				LastUpgradeCheck = 1320;
 				ORGANIZATIONNAME = "Joseph Jung";
 				TargetAttributes = {
 					534BCEC3244679380098EE80 = {
@@ -169,10 +189,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				534BCEC8244679380098EE80 /* AppDelegate.swift in Sources */,
+				538515AF27A5E746008DAA98 /* NewProblemView.swift in Sources */,
 				534BCEDF24467ACD0098EE80 /* Gauss.swift in Sources */,
 				534BCECA244679380098EE80 /* SceneDelegate.swift in Sources */,
 				534BCECC244679380098EE80 /* ContentView.swift in Sources */,
 				534BCEE224474CE30098EE80 /* Equations.swift in Sources */,
+				538515AD27A4A94C008DAA98 /* FileNamer.swift in Sources */,
+				538E5089244C939E0055911E /* EquationsView.swift in Sources */,
+				538E50862448EE430055911E /* State.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -240,7 +264,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -294,7 +318,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
