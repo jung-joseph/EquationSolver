@@ -22,6 +22,8 @@
 		538515AF27A5E746008DAA98 /* NewProblemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 538515AE27A5E746008DAA98 /* NewProblemView.swift */; };
 		538E50862448EE430055911E /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 538E50852448EE430055911E /* State.swift */; };
 		538E5089244C939E0055911E /* EquationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 538E5088244C939E0055911E /* EquationsView.swift */; };
+		539FC13927B30F0500D2C703 /* SolveButtonSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 539FC13827B30F0500D2C703 /* SolveButtonSection.swift */; };
+		539FC13B27B31A2200D2C703 /* EquationSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 539FC13A27B31A2200D2C703 /* EquationSection.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +44,8 @@
 		538515AE27A5E746008DAA98 /* NewProblemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewProblemView.swift; sourceTree = "<group>"; };
 		538E50852448EE430055911E /* State.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = State.swift; sourceTree = "<group>"; };
 		538E5088244C939E0055911E /* EquationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EquationsView.swift; sourceTree = "<group>"; };
+		539FC13827B30F0500D2C703 /* SolveButtonSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SolveButtonSection.swift; sourceTree = "<group>"; };
+		539FC13A27B31A2200D2C703 /* EquationSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EquationSection.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -130,6 +134,8 @@
 				538515AE27A5E746008DAA98 /* NewProblemView.swift */,
 				534E749727B0089A00CC8943 /* AboutView.swift */,
 				534E4D6727B15A4500029E55 /* VerificationProblemsView.swift */,
+				539FC13827B30F0500D2C703 /* SolveButtonSection.swift */,
+				539FC13A27B31A2200D2C703 /* EquationSection.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -208,7 +214,9 @@
 				534BCEC8244679380098EE80 /* AppDelegate.swift in Sources */,
 				538515AF27A5E746008DAA98 /* NewProblemView.swift in Sources */,
 				534BCEDF24467ACD0098EE80 /* Gauss.swift in Sources */,
+				539FC13927B30F0500D2C703 /* SolveButtonSection.swift in Sources */,
 				534BCECA244679380098EE80 /* SceneDelegate.swift in Sources */,
+				539FC13B27B31A2200D2C703 /* EquationSection.swift in Sources */,
 				534E749827B0089A00CC8943 /* AboutView.swift in Sources */,
 				534BCECC244679380098EE80 /* ContentView.swift in Sources */,
 				534BCEE224474CE30098EE80 /* Equations.swift in Sources */,

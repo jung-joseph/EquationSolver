@@ -119,7 +119,7 @@ struct ContentView: View {
 
                             
                     }) {
-                        Text("Select a Previously Saved Problem")
+                        Text("Load a Saved Problem")
                     }
                     .sheet(isPresented: self.$showDocumentPicker) {
                         
