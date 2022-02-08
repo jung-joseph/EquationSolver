@@ -15,6 +15,9 @@
 		534BCED4244679390098EE80 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 534BCED2244679390098EE80 /* LaunchScreen.storyboard */; };
 		534BCEDF24467ACD0098EE80 /* Gauss.swift in Sources */ = {isa = PBXBuildFile; fileRef = 534BCEDE24467ACD0098EE80 /* Gauss.swift */; };
 		534BCEE224474CE30098EE80 /* Equations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 534BCEE124474CE30098EE80 /* Equations.swift */; };
+		534E4D6627B0936B00029E55 /* VerificationProblems.swift in Sources */ = {isa = PBXBuildFile; fileRef = 534E4D6527B0936B00029E55 /* VerificationProblems.swift */; };
+		534E4D6827B15A4500029E55 /* VerificationProblemsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 534E4D6727B15A4500029E55 /* VerificationProblemsView.swift */; };
+		534E749827B0089A00CC8943 /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 534E749727B0089A00CC8943 /* AboutView.swift */; };
 		538515AD27A4A94C008DAA98 /* FileNamer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 538515AC27A4A94C008DAA98 /* FileNamer.swift */; };
 		538515AF27A5E746008DAA98 /* NewProblemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 538515AE27A5E746008DAA98 /* NewProblemView.swift */; };
 		538E50862448EE430055911E /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 538E50852448EE430055911E /* State.swift */; };
@@ -32,6 +35,9 @@
 		534BCED5244679390098EE80 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		534BCEDE24467ACD0098EE80 /* Gauss.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Gauss.swift; sourceTree = "<group>"; };
 		534BCEE124474CE30098EE80 /* Equations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Equations.swift; sourceTree = "<group>"; };
+		534E4D6527B0936B00029E55 /* VerificationProblems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerificationProblems.swift; sourceTree = "<group>"; };
+		534E4D6727B15A4500029E55 /* VerificationProblemsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerificationProblemsView.swift; sourceTree = "<group>"; };
+		534E749727B0089A00CC8943 /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
 		538515AC27A4A94C008DAA98 /* FileNamer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileNamer.swift; sourceTree = "<group>"; };
 		538515AE27A5E746008DAA98 /* NewProblemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewProblemView.swift; sourceTree = "<group>"; };
 		538E50852448EE430055911E /* State.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = State.swift; sourceTree = "<group>"; };
@@ -68,6 +74,7 @@
 		534BCEC6244679380098EE80 /* EquationSolver */ = {
 			isa = PBXGroup;
 			children = (
+				534E4D6427B0934600029E55 /* VerificationProblems */,
 				538E5087244C93780055911E /* Views */,
 				534BCEE024474CC40098EE80 /* Equations */,
 				534BCEDD24467AA50098EE80 /* Gauss */,
@@ -106,6 +113,14 @@
 			path = Equations;
 			sourceTree = "<group>";
 		};
+		534E4D6427B0934600029E55 /* VerificationProblems */ = {
+			isa = PBXGroup;
+			children = (
+				534E4D6527B0936B00029E55 /* VerificationProblems.swift */,
+			);
+			path = VerificationProblems;
+			sourceTree = "<group>";
+		};
 		538E5087244C93780055911E /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -113,6 +128,8 @@
 				538E5088244C939E0055911E /* EquationsView.swift */,
 				538515AC27A4A94C008DAA98 /* FileNamer.swift */,
 				538515AE27A5E746008DAA98 /* NewProblemView.swift */,
+				534E749727B0089A00CC8943 /* AboutView.swift */,
+				534E4D6727B15A4500029E55 /* VerificationProblemsView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -192,11 +209,14 @@
 				538515AF27A5E746008DAA98 /* NewProblemView.swift in Sources */,
 				534BCEDF24467ACD0098EE80 /* Gauss.swift in Sources */,
 				534BCECA244679380098EE80 /* SceneDelegate.swift in Sources */,
+				534E749827B0089A00CC8943 /* AboutView.swift in Sources */,
 				534BCECC244679380098EE80 /* ContentView.swift in Sources */,
 				534BCEE224474CE30098EE80 /* Equations.swift in Sources */,
 				538515AD27A4A94C008DAA98 /* FileNamer.swift in Sources */,
 				538E5089244C939E0055911E /* EquationsView.swift in Sources */,
 				538E50862448EE430055911E /* State.swift in Sources */,
+				534E4D6627B0936B00029E55 /* VerificationProblems.swift in Sources */,
+				534E4D6827B15A4500029E55 /* VerificationProblemsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

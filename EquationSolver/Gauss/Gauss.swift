@@ -18,7 +18,6 @@ class Gauss: ObservableObject {
     @Published var x = [Double]()
     @Published var error = [Double]()
     @Published var solverMessage: String = ""
-    @Published var errorText = [String]()
     
     init(neq: Int) {
         
@@ -32,7 +31,6 @@ class Gauss: ObservableObject {
         x = Array(repeating: 0.0, count: neq)
         
         error = Array(repeating: 0.0, count: neq)
-        errorText = Array(repeating: "0.0", count: neq)
         
         
         
@@ -49,7 +47,6 @@ class Gauss: ObservableObject {
             self.x = newObject.x
             self.error = newObject.error
             self.solverMessage = newObject.solverMessage
-            self.errorText = newObject.errorText
           
         }
     
@@ -63,7 +60,6 @@ class Gauss: ObservableObject {
         self.printBCopy()
         self.printX()
         self.printError()
-        self.printErrorText()
         print("solver message \(self.solverMessage)")
         printX()
         
@@ -137,18 +133,10 @@ class Gauss: ObservableObject {
     }
     
     
-    func printErrorText() {
-        print("The ErrorText")
-        
-        for value in errorText {
-                print(value, terminator: " ")
-            print(" ")
-        }
-        print()
-    }
     
     
-    @discardableResult func gaussSCPSolve() -> [Double] {
+    
+    @discardableResult func gaussSCPSolve() -> Bool {
         // Gauss Elimination with Scaled Column Pivoting
         // Burden, Richard, Faires, J. Douglas, "Numerical Analysis", Third Ed., 1985
         
@@ -176,11 +164,14 @@ class Gauss: ObservableObject {
             if abs(matrix[0][0]) < smallNumber {
                 x[0] = 0.0
                 solverMessage = "Poorly Conditioned System: Zero or Near Zero Pivot"
-                return x
+                return false
             }
             x[0] = matrix[0][neq]/matrix[0][0]
             solverMessage = "Solution Found"
-            return x
+            
+//            residual()
+            
+            return true
         }
         
         // Initialize Row Pointer
@@ -195,7 +186,7 @@ class Gauss: ObservableObject {
             }
             if s[i] == 0.0 {
                 solverMessage = "No Unique Solution Exist: All Zeros in a Row"
-                return x
+                return false
             }
             nRow[i] = i
         }
@@ -215,7 +206,7 @@ class Gauss: ObservableObject {
             
             if(maxInCol < smallNumber) {
                 solverMessage = "No Unique Solution"
-                return x
+                return false
             }
             
             if(nRow[i] != nRow[p]) {
@@ -239,7 +230,7 @@ class Gauss: ObservableObject {
         
         if abs(matrix[nRow[neq-1]][neq-1]) < smallNumber {
             solverMessage = "No Unique Solution"
-            return x
+            return false
         }
         
         // Back Substituion
@@ -260,13 +251,120 @@ class Gauss: ObservableObject {
         
         
         solverMessage = "Solution Found"
-        return x
+//        residual()
+        return true
+    }
+
+    
+    @discardableResult func gaussMCPSolve() -> Bool {
+        // Gauss Elimination with Maximal Column Pivoting
+        // Burden, Richard, Faires, J. Douglas, "Numerical Analysis", Third Ed., 1985
+        
+        var factor: Double
+        
+        var sum : Double
+        var product : Double
+        var nCopy: Int
+        let smallNumber: Double = 1.0e-15
+        var nRow:[Int] = Array(repeating: 0, count: neq)
+        
+        
+        // copy original matrix for later error calculations
+        for i in 0..<neq {
+            for j in 0..<neq {
+                matrixCopy[i][j] = matrix[i][j]
+            }
+            bCopy[i] = matrix[i][neq]
+        }
+        
+        
+        // deal with only 1 equation
+        if neq == 1 {
+            if abs(matrix[0][0]) < smallNumber {
+                x[0] = 0.0
+                solverMessage = "Poorly Conditioned System: Zero or Near Zero Pivot"
+                return false
+            }
+            x[0] = matrix[0][neq]/matrix[0][0]
+            solverMessage = "Solution Found"
+//            residual()
+            return true
+        }
+        
+        // Initialize Row Pointer
+        
+        for i in 0..<neq {
+            nRow[i] = i
+        }
+        
+        // Forward Elimination
+        for i in 0...neq-2 {
+            
+            var p = i
+            var maxInCol = abs(matrix[nRow[i]][i])
+            
+            for j in i..<neq {
+                if abs(matrix[nRow[j]][i]) > maxInCol {
+                    p = j
+                    maxInCol = abs(matrix[nRow[j]][i])
+                }
+            }
+            
+            if(maxInCol < smallNumber) {
+                solverMessage = "No Unique Solution"
+                return false
+            }
+            
+            if(nRow[i] != nRow[p]) {
+                nCopy = nRow[i]
+                nRow[i] = nRow[p]
+                nRow[p] = nCopy
+            }
+            
+            
+            for j in i+1...neq-1 {
+                
+                factor = matrix[nRow[j]][i]/matrix[nRow[i]][i]
+                
+                for jj in i...neq {
+                    matrix[nRow[j]][jj] = matrix[nRow[j]][jj] - factor *  matrix[nRow[i]][jj]
+                }
+                
+            }
+            
+        }
+        
+        if abs(matrix[nRow[neq-1]][neq-1]) < smallNumber {
+            solverMessage = "No Unique Solution"
+            return false
+        }
+        
+        // Back Substituion
+        
+        x[neq-1] = matrix[nRow[neq-1]][neq]/matrix[nRow[neq-1]][neq-1]
+        
+        
+        for i in stride(from: neq-2, through: 0, by: -1){
+            sum = 0.0
+            for j in i+1...neq-1 {
+                product = matrix[nRow[i]][j] * x[j]
+                sum = sum - product
+            }
+            x[i] = (matrix[nRow[i]][neq] + sum)/matrix[nRow[i]][i]
+            
+        }
+        
+        
+        
+        solverMessage = "Solution Found"
+//        residual()
+        return true
     }
     
     
     //Mark: - Gauss Elimination without pivoting
     
-    @discardableResult func gaussSolve() -> [Double] {
+    @discardableResult func gaussSolve() -> Bool {
         
         var factor: Double
         
@@ -274,7 +372,7 @@ class Gauss: ObservableObject {
         var product : Double
         let smallNumber: Double = 1.0e-15
         var nRow:[Int] = Array(repeating: 0, count: neq)
-        var nCopy: Int
+//        var nCopy: Int
         
         // copy original matrix for later error calculations
         for i in 0..<neq {
@@ -290,11 +388,12 @@ class Gauss: ObservableObject {
             if abs(matrix[0][0]) < smallNumber {
                 x[0] = 0.0
                 solverMessage = "Poorly Conditioned System: Zero or Near Zero Pivot"
-                return x
+                return false
             }
             x[0] = matrix[0][neq]/matrix[0][0]
             solverMessage = "Solution Found"
-            return x
+//            residual()
+            return true
         }
         
         
@@ -319,22 +418,22 @@ class Gauss: ObservableObject {
                 }
                 if(p == -1) {
                     solverMessage = "No Unique Solution or Possible Poorly Conditioned System"
-                    return x
+                    return false
                 }
                 
-                // Perform row interchange, if necessary
-                if p != i {
-//                    print("Gauss: interchanging rows \(p) for \(i)")
-                    nCopy = nRow[i]
-                    nRow[i] = nRow[p]
-                    nRow[p] = nCopy
-                }
+//                // Perform row interchange, if necessary
+//                if p != i {
+////                    print("Gauss: interchanging rows \(p) for \(i)")
+//                    nCopy = nRow[i]
+//                    nRow[i] = nRow[p]
+//                    nRow[p] = nCopy
+//                }
                 
                 for j in i+1...neq-1 {
                     
                     if abs(matrix[nRow[i]][i]) < smallNumber {
                         solverMessage = "Poorly Conditioned System: Zero or Near Zero Pivot"
-                        return x
+                        return false
                     }
                     factor = matrix[nRow[j]][i]/matrix[nRow[i]][i]
                     for jj in i...neq {
@@ -346,7 +445,7 @@ class Gauss: ObservableObject {
             
             if abs(matrix[nRow[neq-1]][neq-1]) < smallNumber {
                 solverMessage = "No Unique Solution: Zero in Last Pivot"
-                return x
+                return false
             }
         
         // Back Substituion
@@ -364,7 +463,8 @@ class Gauss: ObservableObject {
             }
         
         solverMessage = "Solution Found"
-        return x
+//        residual()
+        return true
     }
     
     func printSolution(){

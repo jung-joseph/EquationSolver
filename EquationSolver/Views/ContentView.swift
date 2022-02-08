@@ -5,7 +5,7 @@
 //  Created by Joseph Jung on 4/14/20.
 //  Copyright © 2020 Joseph Jung. All rights reserved.
 //
-//"https://www.vecteezy.com/free-vector/bracket">Bracket Vectors by Vecteezy</a>
+//
 
 import SwiftUI
 import Foundation
@@ -23,7 +23,9 @@ struct ContentView: View {
     @State var filename: String = ""
     @State private var showDocumentPicker = false
     @State private var showFileNamer = false
-//    @State var currentData = Equations(neq: 2)
+    @State private var showAbout = false
+    @State private var showVerification = false
+
     @State var isEditing = false
     
     @State var showNewProblem = false
@@ -32,7 +34,8 @@ struct ContentView: View {
     //    var localEquations: Equations
     @ObservedObject var equations: Equations
     @ObservedObject var system: Gauss
-    
+    @ObservedObject var verificationProblems = VerificationProblems()
+
     
     
     
@@ -44,6 +47,25 @@ struct ContentView: View {
             
             HStack{
                 VStack{
+                    // Mark: About
+                    
+                    Button("About"){
+                        showAbout = true
+                    }
+                    .sheet(isPresented: $showAbout) {
+                        AboutView()
+                            .onDisappear{
+                                
+                            }
+                    }
+                    .background(Color.red)
+                        .foregroundColor(Color.white)
+                        .cornerRadius(10)
+                        .shadow(radius: 10)
+                        .padding()
+                   
+                   
+                    
                     
                     //Mark: - New Problem
                     Button(action:
@@ -56,7 +78,7 @@ struct ContentView: View {
                         Text("Start New Problem")
                     }
                         .sheet(isPresented: $showNewProblem) {
-                            NewProblemView(neqText: self.$neqText, showNewProblem: self.$showNewProblem)
+                            NewProblemView(neqText: self.$neqText, showNewProblem: self.$showNewProblem) 
                                 
                                 .onDisappear {
 //                                    print("in Start New Problem")
@@ -68,14 +90,12 @@ struct ContentView: View {
                                     let tempEquations = Equations(neq: self.numEqs)
                                     equations.copyElements(newObject: tempEquations)
                                   
-//                                print("\nSetting numEqs to \(self.numEqs) \n")
-//                                   equations.printEquationsObject()
+//
                                     
                                     // Update the system object
                                     let tempGauss = Gauss(neq: self.numEqs)
                                     system.copyElements(newObject: tempGauss)
                                     
-//                                    system.printGaussObject()
                                                  
                                 }
                         }
@@ -85,18 +105,7 @@ struct ContentView: View {
                             .shadow(radius: 10)
                             .padding()
                     
-//                    //Mark: - Clear Problem
 //
-//                    Button(action: {
-//                        self.showEquationView = false
-//                        self.numEqsText = "0"
-//                    }) {
-//                        Text("Clear Problem")
-//                    }.background(Color.red)
-//                        .foregroundColor(Color.white)
-//                        .cornerRadius(10)
-//                        .shadow(radius: 10)
-//                        .padding()
                         
                     
                     //Mark: - Read in File
@@ -110,7 +119,7 @@ struct ContentView: View {
 
                             
                     }) {
-                        Text("Read In A Previously  Problem")
+                        Text("Select a Previously Saved Problem")
                     }
                     .sheet(isPresented: self.$showDocumentPicker) {
                         
@@ -118,9 +127,7 @@ struct ContentView: View {
                             .onDisappear {
                                 
 
-//                                print("in DocumentPicker")
-                                
-//                                print("onDisappear: \(readFileContent)")
+//
                                 
                                 let decoder = JSONDecoder()
                                 do {
@@ -132,8 +139,7 @@ struct ContentView: View {
                                     self.numEqsText = String(readInData.neq)
                                     self.numEqs = readInData.neq
                                     
-//                                    print("DATA READ \(self.numEqsText)")
-//                                    print("self.numEqs \(self.numEqs)")
+//
                                     //copy read object into current equation object
                                     let tempEquations = Equations(neq: self.numEqs) // temp new equation object
                                     self.showEquationView = true
@@ -142,24 +148,22 @@ struct ContentView: View {
                                     
                                     equations.copyElements(newObject: readInData)
                                     
-                                    equations.zeroXText()
+                                    equations.blankXEText()
 
-//                                    print("read in and copied Data ")
-//                                    print("new neq \(equations.neq) ")
-//                                    equations.printEquationsObject()
+//
 
                                     // Update the system object
                                     let tempGauss = Gauss(neq: self.numEqs)
                                     system.copyElements(newObject: tempGauss)
 
-//                                    system.printGaussObject()
 
 
-//                                    message = "File read"
-//                                    showMessage = true
+//
 
                                 } catch {
                                     print ("Error in decodeJSON")
+                                    system.solverMessage = "Invalid file selected"
+                                    showEquationView = true
 //                                    message = "Error in decodeJSON while reading file"
 //                                    showMessage = true
 
@@ -176,28 +180,21 @@ struct ContentView: View {
                 
                     
                     
-                    //Mark: - Write File
-
-                    Button(action: {
-                        
-//                            print(" Save Problem to File")
-                        showFileNamer = true
-                       
-                            
-                    }) {
-                        Text("Write Problem to File")
+ 
+                
+//                   Mark: - Load Verification Problems
+                    
+                    
+                    Button("Verification Problems"){
+                        showVerification = true
+                        showEquationView = false
                     }
-                    .sheet(isPresented: $showFileNamer) {
-                        FileNamer(fileName: self.$filename, showFileNamer: self.$showFileNamer)
+                    .sheet(isPresented: $showVerification) {
+                        VerificationProblemsView(showVerification: $showVerification, showEquationView: $showEquationView, equations: equations, system: system)
                             
                             .onDisappear {
-                                let encodedData = try! JSONEncoder().encode(self.equations)
-                                let tempEncodedData = String(data: encodedData, encoding: .utf8)!
-//                                print("in Write File")
-//                                print(tempEncodedData)
-                                // Write to Files App
-                                 writeTextFile( fileName: filename, contents: tempEncodedData)
-
+                                showVerification = false
+                                showEquationView = true
             
                             }
                     }
@@ -206,16 +203,16 @@ struct ContentView: View {
                         .cornerRadius(10)
                         .shadow(radius: 10)
                         .padding()
-                
+                        
                 } // VStack
                 
+//                Mark: Show EquationView
                 if(!self.showEquationView) {
                     Spacer()
                 }
                 
                 if(self.showEquationView) {
-//                    EquationsView(numEqs: self.numEqs, equations: Equations(neq: self.numEqs), system: Gauss(neq: self.numEqs))
-                    EquationsView(numEqs: self.numEqs, equations: equations, system: system)
+                    EquationsView(numEqs: self.numEqs, equations: equations, system: system, showEquationView: $showEquationView)
                     Spacer()
                 } else {
                     Spacer()
@@ -240,9 +237,10 @@ struct ContentView: View {
         
         do {
             try contents.write(to: fileURL, atomically: true, encoding: .utf8)
-            print("In writeTextFiles")
-            let input = try String(contentsOf: fileURL)
-            print(input)
+            
+//  Read back to check that tile was written correctly
+//            let input = try String(contentsOf: fileURL)
+//            print(input)
             
             return "File Saved"
         }
@@ -307,28 +305,7 @@ struct ContentView: View {
                             didPickDocumentsAt urls: [URL]) {
             let fileURL = urls[0]
             
-            //        print("in documentPicker")
-            //        print(fileURL)
             
-            //        do {
-            //            if fileURL.startAccessingSecurityScopedResource() {
-            //                let _fileContent = try String(contentsOf: fileURL, encoding: .utf8)
-            //                print(_fileContent)
-            //
-            //                self.fileContent = _fileContent // write to Binding to show in ContentView
-            //
-            //                do { fileURL.stopAccessingSecurityScopedResource()}
-            //
-            //
-            //
-            //            } else {
-            //                // Handle denial
-            //            }
-            //
-            //
-            //        } catch let error {
-            //            print(error.localizedDescription)
-            //        }
             do {
                 let _fileContent = try String(contentsOf: fileURL, encoding: .utf8)
 //                print("In documentPicker - fileContent:")

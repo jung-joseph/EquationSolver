@@ -18,6 +18,7 @@ class Equations: ObservableObject, Codable {
     @Published var aMatrixText = [[String]]() // String array for aMatrix
     @Published var xMatrixText = [String]() // String array for xMatrix
     @Published var bMatrixText = [String]() // String array for bMatrix
+    @Published var errorText = [String]() //
     @Published var neq: Int
     
     
@@ -40,6 +41,9 @@ class Equations: ObservableObject, Codable {
         fillerStarVector = Array(repeating: " ", count: neq/2)
         fillerEqualVector = Array(repeating: " ", count: neq/2)
         
+        errorText = Array(repeating: "-", count: neq)
+
+        
     }
     //Mark: - Codable
     enum CodingKeys: String, CodingKey {
@@ -48,6 +52,7 @@ class Equations: ObservableObject, Codable {
         case aMatrixText
         case xMatrixText
         case bMatrixText
+        case errorText
         
         case aMatrix
         case xMatrix
@@ -65,6 +70,7 @@ class Equations: ObservableObject, Codable {
         aMatrixText = try values.decode([[String]].self, forKey: .aMatrixText)
         xMatrixText = try values.decode([String].self, forKey: .xMatrixText)
         bMatrixText = try values.decode([String].self, forKey: .bMatrixText)
+        errorText = try values.decode([String].self, forKey: .errorText)
         
         aMatrix = try values.decode([[Double]].self, forKey: .aMatrix)
         xMatrix = try values.decode([Double].self, forKey: .xMatrix)
@@ -81,6 +87,7 @@ class Equations: ObservableObject, Codable {
         try container.encode(aMatrixText, forKey: .aMatrixText)
         try container.encode(bMatrixText, forKey: .bMatrixText)
         try container.encode(xMatrixText, forKey: .xMatrixText)
+        try container.encode(errorText, forKey: .errorText)
         
         try container.encode(aMatrix, forKey: .aMatrix)
         try container.encode(bMatrix, forKey: .bMatrix)
@@ -94,6 +101,7 @@ class Equations: ObservableObject, Codable {
         self.aMatrixText = newObject.aMatrixText
         self.bMatrixText = newObject.bMatrixText
         self.xMatrixText = newObject.xMatrixText
+        self.errorText = newObject.errorText
         self.aMatrix = newObject.aMatrix
         self.bMatrix = newObject.bMatrix
         self.xMatrix = newObject.xMatrix
@@ -110,6 +118,7 @@ class Equations: ObservableObject, Codable {
         self.printAMatrixText()
         self.printXMatrixText()
         self.printBMatrixText()
+        self.printErrorText()
         self.printAMatrix()
         self.printXMatrix()
         self.printBMatrix()
@@ -129,6 +138,16 @@ class Equations: ObservableObject, Codable {
             print(" ")
         }
         
+        print()
+    }
+    
+    func printErrorText() {
+        print("The ErrorText")
+        
+        for value in errorText {
+                print(value, terminator: " ")
+            print(" ")
+        }
         print()
     }
     
@@ -228,10 +247,11 @@ class Equations: ObservableObject, Codable {
         print("Leaving adjust aMatrixText.count is \(aMatrixText.count)")
         
     }
-    //Mark: - Zero xMatrixText after file read and copy
-    func zeroXText() {
+    //Mark: - Blank xMatrixText and errorText at the start of new problem, and after file read and copy
+    func blankXEText() {
         for i in 0..<neq {
-            xMatrixText[i] = "0.0"
+            xMatrixText[i] = "-"
+            errorText[i] = "-"
         }
     }
 }

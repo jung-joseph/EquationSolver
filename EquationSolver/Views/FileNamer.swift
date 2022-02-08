@@ -15,10 +15,11 @@ struct FileNamer: View {
     var body: some View {
                
         VStack {
-            Text("File")
-                .foregroundColor(.black)
+            Text("Save Current Problem or Solution")
+                .foregroundColor(.blue)
+                .font(.title)
 
-            TextField("Enter File Name with .txt", text: $fileName)
+            TextField("Enter File Name", text: $fileName)
                 .foregroundColor(.black)
                 .padding()
                 .fixedSize()

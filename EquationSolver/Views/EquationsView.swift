@@ -15,9 +15,10 @@ struct EquationsView: View {
     
     @State var showFileNamer = false
     @State var filename = ""
+//    @State var operationMessage: String = ""
+//    @State var showOperationMessage: Bool = false
     
-    
-
+    @Binding var showEquationView: Bool
     
     var body: some View {
         
@@ -106,6 +107,7 @@ struct EquationsView: View {
                         }
                     }
                 }.textFieldStyle(RoundedBorderTextFieldStyle()).padding().font(.custom("Arial", size: 15)).fixedSize()
+
                 
    
                 Group { // Error
@@ -116,7 +118,7 @@ struct EquationsView: View {
                         ForEach(0..<self.system.error.count) { i in
                             
 //                            TextField(self.system.errorText[i], text: self.$system.errorText[i] )
-                            Text("\(self.system.errorText[i])")
+                            Text("\(self.equations.errorText[i])")
                                 
                             
                         }
@@ -129,16 +131,18 @@ struct EquationsView: View {
                 }
                
                 
-//                .textFieldStyle(RoundedBorderTextFieldStyle()).padding().font(.custom("Arial", size: 15)).fixedSize()
                 
-                
+
             } // HStack for Equations
+            .keyboardType(.decimalPad)
+
             
-            HStack{
-                Spacer()
-                Spacer()
+            // solver message
+//
+                
+
                 TextField("Solver Messages", text: self.$system.solverMessage)
-            }
+            
             
             HStack {
                 
@@ -146,75 +150,153 @@ struct EquationsView: View {
                 Button(action: {
                     
                     
-                    // Fill in aMatrix from aMatrixText
-                    for i in 0..<self.numEqs {
-                        self.system.matrix[i][self.numEqs] = Double(self.equations.bMatrixText[i]) ?? 0.0
-                        for j in 0..<self.numEqs {
-//                            print("i \(i)  j \(j)  \(self.equations.aMatrixText[i][j])")
-                            self.system.matrix[i][j] = Double(self.equations.aMatrixText[i][j]) ?? 0.0
-                        }
+// Fill in aMatrix from aMatrixText
+                    showEquationView = false
+                    
+                    equations.blankXEText() // blank out x and error texts
+
+                    
+                    let errorCode = transferTextToDouble()
+                    if errorCode {
+                        system.solverMessage = "Invalid Entry"
+                        self.showEquationView = true
+                        return
                     }
                     
-//                    self.equations.printEquationsObject()
+//                    print(system.solverMessage)
                     
-                    self.system.gaussSolve()
-                    self.system.residual()
 
-                    for i in 0..<self.numEqs {
-                        self.equations.xMatrixText[i] = String(format:"%.3e",self.system.x[i])
-                        self.system.errorText[i] = String(format:"%.2e",self.system.error[i])
+                    
+                    let success = self.system.gaussSolve()
+//                    self.system.residual()
 
+                    if success { // copy solution to Text
+                        system.residual()
+                        solutionToText()
                     }
-                    //                    self.system.printSolution()
-                    //                systemMatrix.printAMatrix()
-                    //                systemMatrix.printBVector()
+                    
+                    showEquationView = true
                     
                 }) {
-                    Text("Gauss Elimination Solve")
-                }.background(Color.red)
+                    Text("Gauss Elimination")
+                }.background(Color.green)
                     .foregroundColor(Color.white)
                     .cornerRadius(10)
                     .shadow(radius: 10)
                     .padding()
                 
-                
-                
-                // Mark: Scaled Column Piviot
+                //Mark: - Gauss Elimination with Maximal Column Pivoting
                 Button(action: {
-//                                           print("in Scaled Column Pivot Solve Button")
-                     
-                     for i in 0..<self.numEqs {
-                         self.system.matrix[i][self.numEqs] = Double(self.equations.bMatrixText[i]) ?? 0.0
-                         for j in 0..<self.numEqs {
-//                             print("i \(i)  j \(j)  \(self.equations.aMatrixText[i][j])")
-                             self.system.matrix[i][j] = Double(self.equations.aMatrixText[i][j]) ?? 0.0
-                         }
-                     }
-                     
-//                    self.equations.printEquationsObject()
-                    self.system.gaussSCPSolve()
-                    self.system.residual()
+                    
+                    
+// Fill in aMatrix from aMatrixText
+                    showEquationView = false
+                    
+                    equations.blankXEText() // blank out x and error texts
 
-                    for i in 0..<self.numEqs {
-                        self.equations.xMatrixText[i] = String(format:"%.3e",self.system.x[i])
-                        self.system.errorText[i] = String(format:"%.2e",self.system.error[i])
+                    
+                    let errorCode = transferTextToDouble()
+                    if errorCode {
+                        system.solverMessage = "Invalid Entry"
+                        self.showEquationView = true
+                        return
                     }
-//                    self.system.printSolution()
-//                    self.system.printError()
+                    
+                    print(system.solverMessage)
+                    
+
+                    
+                    let success = self.system.gaussMCPSolve()
+
+                    
+                    if success { // copy solution to Text
+                        
+                        system.residual()
+                        solutionToText()
+                    }
+                    
+                    showEquationView = true
+                    
                 }) {
-                    Text("Scaled Column-Pivot Elimination Solve")
-                }.background(Color.red)
+                    Text("Gauss Elimination: Maximal Column Pivoting")
+                }.background(Color.green)
                     .foregroundColor(Color.white)
                     .cornerRadius(10)
                     .shadow(radius: 10)
                     .padding()
                 
+                
+// Mark: Scaled Column Piviot
+                Button(action: {
+
+                    
+                    showEquationView = false
+                    
+                    equations.blankXEText() // blank out x and error texts
+                    
+                    let errorCode = self.transferTextToDouble()
+                    if errorCode {
+                        system.solverMessage = "Invalid Entry"
+                        self.showEquationView = true
+                        return
+                    }
+//
+
+                    let success = self.system.gaussSCPSolve()
+
+//
+                    // write solution and error to Text
+                    if success { // copy solution to Text
+                        system.residual()
+                        solutionToText()
+                    }
+                    showEquationView = true
+
+                    
+                }) {
+                    Text("Gauss Elimination: Scaled Column-Pivot")
+                }.background(Color.green)
+                    .foregroundColor(Color.white)
+                    .cornerRadius(10)
+                    .shadow(radius: 10)
+                    .padding()
+                
+                VStack{
+                //Mark: - Write File
+
+                Button(action: {
+                    
+                    showFileNamer = true
+                   
+                        
+                }) {
+                    Text("Save the Current Problem")
+                }
+                .sheet(isPresented: $showFileNamer) {
+                    FileNamer(fileName: self.$filename, showFileNamer: self.$showFileNamer)
+                        
+                        .onDisappear {
+                            let encodedData = try! JSONEncoder().encode(self.equations)
+                            let tempEncodedData = String(data: encodedData, encoding: .utf8)!
+                            print("in Write File")
+                            print(tempEncodedData)
+                            // Write to Files App
+                            system.solverMessage = writeTextFile( fileName: filename, contents: tempEncodedData)
+
+        
+                        }
+                }
+                .background(Color.red)
+                    .foregroundColor(Color.white)
+                    .cornerRadius(10)
+                    .shadow(radius: 10)
+                    .padding()
  //Mark: - Write Solution Vector
                 
                 Button {
                     showFileNamer = true
                 } label: {
-                    Text("Write Solution to File")
+                    Text("Save the Current Solution")
                 }
                 .sheet(isPresented: $showFileNamer) {
                     FileNamer(fileName: self.$filename, showFileNamer: self.$showFileNamer)
@@ -222,7 +304,7 @@ struct EquationsView: View {
                         .onDisappear {
                             var solutionVector = [Double]()
 //                            print("self.numEqs \(self.numEqs)")
-                            for i in 0..<self.numEqs {
+                            for i in 0..<equations.neq {
                                 solutionVector.append(Double(self.equations.xMatrixText[i]) ?? 0.0)
                             }
 //
@@ -242,7 +324,8 @@ struct EquationsView: View {
                     .cornerRadius(10)
                     .shadow(radius: 10)
                     .padding()
-
+                }
+                
             }
 
         } // View VStack
@@ -263,11 +346,12 @@ struct EquationsView: View {
         
         do {
             try contents.write(to: fileURL, atomically: true, encoding: .utf8)
-            print("In writeTextFiles")
+            
+            
             let input = try String(contentsOf: fileURL)
             print(input)
             
-            return "File Saved"
+            return "Problem Saved"
         }
         catch{
             print("Error: \(error.localizedDescription)")
@@ -283,10 +367,57 @@ struct EquationsView: View {
         return paths[0]
     }
     
+    
+    func transferTextToDouble() -> Bool{
+        
+//        let equations: Equations
+//        var system: Gauss
+        
+//        print("In transferTextToDouble")
+//        print("equations \(equations.neq)")
+        for i in 0..<equations.neq {
+            
+            //Check that entries are Doubles
+            if let value = (Double(equations.bMatrixText[i])) {
+                self.system.matrix[i][equations.neq] = value
+                
+            } else {
+                //
+                return true
+            }
+            
+            
+            for j in 0..<equations.neq {
+                
+                
+                
+                //Check that entries are Doubles
+                if let value = (Double(equations.aMatrixText[i][j])) {
+                    system.matrix[i][j] = value
+//                    print("i: \(i) j: \(j) matrixij: \(system.matrix[i][j])")
+                } else {
+                    //
+                    return true
+                }
+                
+                
+                
+            }
+            
+        }
+        return false
+    }
+    
+    func solutionToText() {
+        for i in 0..<equations.neq {
+            self.equations.xMatrixText[i] = String(format:"%.3e",self.system.x[i])
+            self.equations.errorText[i] = String(format:"%.2e",self.system.error[i])
+        }
+    }
 }
 
-//struct EquationsView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        EquationsView(showEquationView: true, equations: Equations(neq: 2))
-//    }
-//}
+struct EquationsView_Previews: PreviewProvider {
+    static var previews: some View {
+        EquationsView(numEqs:2, equations: Equations(neq: 2), system: Gauss(neq: 2),showEquationView: .constant(true))
+    }
+}
