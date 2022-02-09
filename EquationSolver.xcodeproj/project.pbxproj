@@ -24,6 +24,8 @@
 		538E5089244C939E0055911E /* EquationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 538E5088244C939E0055911E /* EquationsView.swift */; };
 		539FC13927B30F0500D2C703 /* SolveButtonSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 539FC13827B30F0500D2C703 /* SolveButtonSection.swift */; };
 		539FC13B27B31A2200D2C703 /* EquationSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 539FC13A27B31A2200D2C703 /* EquationSection.swift */; };
+		539FC13E27B3EF1C00D2C703 /* ProjectRoutines.swift in Sources */ = {isa = PBXBuildFile; fileRef = 539FC13D27B3EF1C00D2C703 /* ProjectRoutines.swift */; };
+		539FC14027B3F38E00D2C703 /* DocumentPickerFiles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 539FC13F27B3F38E00D2C703 /* DocumentPickerFiles.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +48,8 @@
 		538E5088244C939E0055911E /* EquationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EquationsView.swift; sourceTree = "<group>"; };
 		539FC13827B30F0500D2C703 /* SolveButtonSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SolveButtonSection.swift; sourceTree = "<group>"; };
 		539FC13A27B31A2200D2C703 /* EquationSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EquationSection.swift; sourceTree = "<group>"; };
+		539FC13D27B3EF1C00D2C703 /* ProjectRoutines.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectRoutines.swift; sourceTree = "<group>"; };
+		539FC13F27B3F38E00D2C703 /* DocumentPickerFiles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentPickerFiles.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,6 +86,7 @@
 				538E5087244C93780055911E /* Views */,
 				534BCEE024474CC40098EE80 /* Equations */,
 				534BCEDD24467AA50098EE80 /* Gauss */,
+				539FC13C27B3EEB600D2C703 /* ProjectRoutines */,
 				534BCEC7244679380098EE80 /* AppDelegate.swift */,
 				534BCEC9244679380098EE80 /* SceneDelegate.swift */,
 				538E50852448EE430055911E /* State.swift */,
@@ -138,6 +143,15 @@
 				539FC13A27B31A2200D2C703 /* EquationSection.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		539FC13C27B3EEB600D2C703 /* ProjectRoutines */ = {
+			isa = PBXGroup;
+			children = (
+				539FC13D27B3EF1C00D2C703 /* ProjectRoutines.swift */,
+				539FC13F27B3F38E00D2C703 /* DocumentPickerFiles.swift */,
+			);
+			path = ProjectRoutines;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -215,6 +229,7 @@
 				538515AF27A5E746008DAA98 /* NewProblemView.swift in Sources */,
 				534BCEDF24467ACD0098EE80 /* Gauss.swift in Sources */,
 				539FC13927B30F0500D2C703 /* SolveButtonSection.swift in Sources */,
+				539FC14027B3F38E00D2C703 /* DocumentPickerFiles.swift in Sources */,
 				534BCECA244679380098EE80 /* SceneDelegate.swift in Sources */,
 				539FC13B27B31A2200D2C703 /* EquationSection.swift in Sources */,
 				534E749827B0089A00CC8943 /* AboutView.swift in Sources */,
@@ -225,6 +240,7 @@
 				538E50862448EE430055911E /* State.swift in Sources */,
 				534E4D6627B0936B00029E55 /* VerificationProblems.swift in Sources */,
 				534E4D6827B15A4500029E55 /* VerificationProblemsView.swift in Sources */,
+				539FC13E27B3EF1C00D2C703 /* ProjectRoutines.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

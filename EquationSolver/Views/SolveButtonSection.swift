@@ -147,6 +147,8 @@ struct SolveButtonSection: View {
                 .padding()
        
             VStack{
+                
+                
                 //Mark: - Write File
                 
                 Button(action: {
@@ -155,7 +157,7 @@ struct SolveButtonSection: View {
                     
                     
                 }) {
-                    Text("Save Current Problem")
+                    Text("Save Problem")
                 }
                 .sheet(isPresented: $showFileNamer) {
                     FileNamer(fileName: self.$filename, showFileNamer: self.$showFileNamer)
@@ -167,8 +169,6 @@ struct SolveButtonSection: View {
                             print(tempEncodedData)
                             // Write to Files App
                             system.solverMessage = writeTextFile( fileName: filename, contents: tempEncodedData)
-                            
-                            
                         }
                 }
                 .background(Color.red)
@@ -176,12 +176,16 @@ struct SolveButtonSection: View {
                 .cornerRadius(10)
                 .shadow(radius: 10)
                 .padding(EdgeInsets(top: 0, leading: 0, bottom:2, trailing: 5))
+                
+                
+                
+                
                 //Mark: - Write Solution Vector
                 
                 Button {
                     showFileNamer = true
                 } label: {
-                    Text("Save Current Solution")
+                    Text("Save Solution")
                 }
                 .sheet(isPresented: $showFileNamer) {
                     FileNamer(fileName: self.$filename, showFileNamer: self.$showFileNamer)
@@ -199,7 +203,7 @@ struct SolveButtonSection: View {
                             let tempEncodedData = String(data: encodedData, encoding: .utf8)!
                             
                             //                             Write to Files App
-                            writeTextFile( fileName: filename, contents: tempEncodedData)
+                            system.solverMessage = writeTextFile( fileName: filename, contents: tempEncodedData)
                             
                             
                         }
