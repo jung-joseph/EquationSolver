@@ -29,27 +29,29 @@ struct EquationsView: View {
             EquationSection(equations: equations, system: system)
             
             // solver message
-            //
-            
-            
-            TextField("Solver Messages", text: self.$system.solverMessage)
-            
+            HStack{
+                
+                
+                //            TextField("Solver Messages", text: self.$system.solverMessage)
+                Text("Solver Messages: ")
+                Text("\(self.system.solverMessage)").foregroundColor(.red)
+            }
             
             SolveButtonSection(equations: equations, system: system, showFileNamer: $showFileNamer, filename: $filename, showEquationView: $showEquationView)
-           
-
+            
+            
             
         } // View VStack
         
         
     } // View
-
+    
 }
 
 struct EquationsView_Previews: PreviewProvider {
     static var previews: some View {
         EquationsView(numEqs:2, equations: Equations(neq: 2), system: Gauss(neq: 2),showEquationView: .constant(true))
-.previewInterfaceOrientation(.landscapeLeft)
+            .previewInterfaceOrientation(.landscapeLeft)
     }
 }
 

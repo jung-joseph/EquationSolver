@@ -20,7 +20,7 @@ struct AboutView: View {
                 } label: {
                     Image(systemName:"chevron.left")
                         .resizable()
-                        .frame(width: 20, height: 20, alignment: .topLeading)
+                        .frame(width: 18, height: 18, alignment: .topLeading)
                         .foregroundColor(.black)
                 }
                 

@@ -108,7 +108,6 @@ struct EquationSection: View {
                         
                         ForEach(0..<self.system.error.count) { i in
                             
-                            //                            TextField(self.system.errorText[i], text: self.$system.errorText[i] )
                             Text("\(self.equations.errorText[i])")
                             
                             

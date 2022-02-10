@@ -17,7 +17,7 @@ struct ContentView: View {
     
     @State  var numEqs: Int
     @State var numEqsText: String = "-"
-    @State var showEquationView = false
+    @State var showEquationView = true
     
     @State private var readFileContent = ""
     @State var filename: String = ""
@@ -51,14 +51,13 @@ struct ContentView: View {
 
                     
                     //                Mark:  EquationView
-                    if(!self.showEquationView) {
-                        Spacer()
-                    }
                     
                     if(self.showEquationView) {
                         EquationsView(numEqs: self.numEqs, equations: equations, system: system, showEquationView: $showEquationView)
                         Spacer()
                     } else {
+                        Spacer()
+                        Spacer()
                         Spacer()
                     }
                 }
