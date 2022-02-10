@@ -237,12 +237,13 @@ struct VerificationProblemsView: View {
 //            print("numEqs in decodeData: \(numEqs)")
             //
             //copy read object into current equation object
-            let tempEquations = Equations(neq: numEqs) // temp new equation object
+//            let tempEquations = Equations(neq: numEqs) // temp new equation object
 //            print("count of aMatrixText: \(tempEquations.aMatrixText.count)")
-            equations.copyElements(newObject: tempEquations)
+//            equations.copyElements(newObject: tempEquations)
 //            print("count of equations.aMatrixText: \(equations.aMatrixText.count)")
 
             equations.copyElements(newObject: decodedData)
+            
 //            print("count of equations.aMatrixText: \(equations.aMatrixText.count)")
 
             equations.blankXEText()

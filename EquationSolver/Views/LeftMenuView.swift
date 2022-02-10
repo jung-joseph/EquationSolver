@@ -120,10 +120,10 @@ struct LeftMenuView: View {
                             
                             //
                             //copy read object into current equation object
-                            let tempEquations = Equations(neq: self.numEqs) // temp new equation object
+//                            let tempEquations = Equations(neq: self.numEqs) // temp new equation object
                             self.showEquationView = true
                             
-                            equations.copyElements(newObject: tempEquations)
+//                            equations.copyElements(newObject: tempEquations)
                             
                             equations.copyElements(newObject: readInData)
                             

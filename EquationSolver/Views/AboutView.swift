@@ -96,7 +96,7 @@ struct AboutView: View {
                     }
                     
                     VStack{
-                        Text("Reference")
+                        Text("References")
                             .foregroundColor(Color.black)
                             .font(.title)
                             .padding(EdgeInsets(top: 25, leading: 25, bottom: 0, trailing: 0))

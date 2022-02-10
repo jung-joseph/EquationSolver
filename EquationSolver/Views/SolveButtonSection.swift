@@ -154,12 +154,13 @@ struct SolveButtonSection: View {
                 Button(action: {
                     
                     showFileNamer = true
-                    
+                    filename = ""
                     
                 }) {
                     Text("Save Problem")
                 }
                 .sheet(isPresented: $showFileNamer) {
+                    
                     FileNamer(fileName: self.$filename, showFileNamer: self.$showFileNamer)
                     
                         .onDisappear {
@@ -184,6 +185,8 @@ struct SolveButtonSection: View {
                 
                 Button {
                     showFileNamer = true
+                    filename = ""
+
                 } label: {
                     Text("Save Solution")
                 }
