@@ -204,6 +204,8 @@ struct ContentView: View {
                         .shadow(radius: 10)
                         .padding()
                         
+                        
+                        Spacer()
                     } // VStack
                     
                     //                Mark: Show EquationView
