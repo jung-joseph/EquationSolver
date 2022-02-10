@@ -9,25 +9,36 @@
 import SwiftUI
 
 struct AboutView: View {
+    @Binding var showAbout: Bool
+    
     var body: some View {
         VStack {
-//            HStack {
-//                padding(EdgeInsets(top: 50, leading: 50, bottom: 50, trailing: 10))
-//                Image("appGraphics")
-//                    .resizable()
-//                    .frame(width: 100, height: 100, alignment: .topLeading)
-//                    .cornerRadius(10)
-//                .border(Color.green, width: 2)
+            HStack{
+                
+                Button {
+                    showAbout = false
+                } label: {
+                    Image(systemName:"chevron.left")
+                        .resizable()
+                        .frame(width: 20, height: 20, alignment: .topLeading)
+                        .foregroundColor(.black)
+                }
+                
+                
+                .foregroundColor(Color.black)
+                .padding()
+                Spacer()
+            }
+            ScrollView() {
+        VStack {
 //
-//                Spacer()
-//            }
             
             HStack {
-                Text("About")
-                    .foregroundColor(Color.black)
-                    .font(.largeTitle)
-                    .bold()
-                    .padding(EdgeInsets(top: 50, leading: 25, bottom: 0, trailing: 0))
+//                Text("About")
+//                    .foregroundColor(Color.black)
+//                    .font(.largeTitle)
+//                    .bold()
+//                    .padding(EdgeInsets(top: 50, leading: 25, bottom: 0, trailing: 0))
                 
                 Image(systemName: "a.square.fill")
                     .resizable()
@@ -55,7 +66,7 @@ struct AboutView: View {
                     .foregroundColor(Color.black)
                     .font(.title)
                     .padding(EdgeInsets(top: 25, leading: 25, bottom: 0, trailing: 0))
-                Text("Welcome to EquationSolver! If you downloaded this app, I know that you are not a typical iOS user! Perhaps you have also noticed as I have, that there appears to be a dearth of BASIC \"Engineering or Science\" tools for students or professionals on the App Store. I have also observed that most college engineering programs (with the notable exception of computer science programs such as Stanford's), do not teach their students how to create programs (or tools) for mobile devices. Therefore, in the spirit of providing useful tools and programming examples of iOS tools for students, I created this simultaneous linear equation solver app. Once I am assured that the major bugs have been found and the app is reasonably easy to use, I intend to make the xCode project available in GitHub.  I hope that you find this app useful. ")
+                Text("Welcome to AX=B! If you downloaded this app, I know that you are not a typical iOS user! Perhaps you have also noticed as I have, that there appears to be a dearth of BASIC \"Engineering or Science\" tools for students or professionals on the App Store. I have also observed that most college engineering programs (with the notable exception of computer science programs such as Stanford's), do not teach their students how to create programs (or tools) for mobile devices. Therefore, in the spirit of providing useful tools and programming examples of iOS tools for students, I created this simultaneous linear equation solver app. This app is written using SwiftUI (not UIKit). Once I am assured that the major bugs have been found and the app is reasonably easy to use, I intend to make the xCode project available in GitHub.  I hope that you find this app useful. ")
                     .font( Font.system(size: 15))
                     .foregroundColor(Color.black)
 
@@ -101,11 +112,17 @@ struct AboutView: View {
         Spacer()
         Spacer()
         }
+    }// Scroll View
+    }// VStack
     }
 }
 
 struct AboutView_Previews: PreviewProvider {
     static var previews: some View {
-        AboutView()
+        Group {
+            AboutView(showAbout: .constant(true))
+                .previewInterfaceOrientation(.portrait)
+            
+        }
     }
 }
