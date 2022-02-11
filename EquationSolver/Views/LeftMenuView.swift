@@ -28,9 +28,11 @@ struct LeftMenuView: View {
             
             
             // Mark: About
-            
-            Button("About"){
+            Button{
                 showAbout = true
+            } label: {
+                Text("About")
+                    .padding(.horizontal, 4)
             }
             .sheet(isPresented: $showAbout) {
                 AboutView(showAbout: self.$showAbout)
@@ -44,17 +46,20 @@ struct LeftMenuView: View {
             .shadow(radius: 10)
             .padding()
             
-            
-            
-            //Mark: - New Problem
-            Button(action:
-                    {
-                showNewProblem = true
-                showEquationView = false
                 
                 
-            }) {
+                
+                //Mark: - New Problem
+                Button(action:
+                        {
+                    showNewProblem = true
+                    showEquationView = false
+                    
+                    
+                }) {
                 Text("Start New Problem")
+                        .padding(.horizontal, 4)
+
             }
             .sheet(isPresented: $showNewProblem) {
                 NewProblemView(neqText: $neqText, showNewProblem: $showNewProblem)
@@ -99,6 +104,8 @@ struct LeftMenuView: View {
                 
             }) {
                 Text("Load a Saved Problem")
+                    .padding(.horizontal, 4)
+
             }
             .sheet(isPresented: self.$showDocumentPicker) {
                 
@@ -164,9 +171,12 @@ struct LeftMenuView: View {
             //                   Mark: - Load Verification Problems
             
             
-            Button("Verification Problems"){
+            Button {
                 showVerification = true
                 showEquationView = false
+            } label: {
+                Text("Verification Problems")
+                    .padding(.horizontal, 4)
             }
             .sheet(isPresented: $showVerification) {
                 VerificationProblemsView(showVerification: $showVerification, showEquationView: $showEquationView, equations: equations, system: system)
@@ -183,7 +193,9 @@ struct LeftMenuView: View {
             .shadow(radius: 10)
             .padding()
             
+
             
+
             Spacer()
         } // VStack
     }
@@ -191,6 +203,6 @@ struct LeftMenuView: View {
 
 struct LeftMenuView_Previews: PreviewProvider {
     static var previews: some View {
-        LeftMenuView(showAbout: .constant(true), showNewProblem: .constant(true), showVerification: .constant(true), showEquationView: .constant(true), neqText: .constant("2"), showDocumentPicker: .constant(true), readFileContent: .constant(" "), numEqsText: .constant("2"), numEqs: .constant(2), equations: Equations(neq: 2), system: Gauss(neq: 2))
+        LeftMenuView(showAbout: .constant(false), showNewProblem: .constant(false), showVerification: .constant(false), showEquationView: .constant(false), neqText: .constant("2"), showDocumentPicker: .constant(false), readFileContent: .constant(" "), numEqsText: .constant("2"), numEqs: .constant(2), equations: Equations(neq: 2), system: Gauss(neq: 2))
     }
 }

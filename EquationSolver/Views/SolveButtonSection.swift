@@ -65,6 +65,8 @@ struct SolveButtonSection: View {
                 
             }) {
                 Text("Gauss Elimination (No Pivoting)")
+                .padding(.horizontal, 4)
+                
             }.background(Color.green)
                 .foregroundColor(Color.white)
                 .cornerRadius(10)
@@ -104,6 +106,8 @@ struct SolveButtonSection: View {
                 
             }) {
                 Text("Maximal Column Pivoting")
+                    .padding(.horizontal, 4)
+
             }.background(Color.green)
                 .foregroundColor(Color.white)
                 .cornerRadius(10)
@@ -140,6 +144,8 @@ struct SolveButtonSection: View {
                 
             }) {
                 Text("Scaled Column-Pivot")
+                    .padding(.horizontal, 4)
+
             }.background(Color.green)
                 .foregroundColor(Color.white)
                 .cornerRadius(10)
@@ -158,6 +164,8 @@ struct SolveButtonSection: View {
                     
                 }) {
                     Text("Save Problem")
+                        .padding(.horizontal, 3)
+
                 }
                 .sheet(isPresented: $showFileNamer) {
                     
@@ -189,6 +197,8 @@ struct SolveButtonSection: View {
 
                 } label: {
                     Text("Save Solution")
+                        .padding(.horizontal, 3)
+
                 }
                 .sheet(isPresented: $showFileNamer) {
                     FileNamer(fileName: self.$filename, showFileNamer: self.$showFileNamer)
@@ -231,6 +241,7 @@ struct SolveButtonSection: View {
 
 struct SolveButtonSection_Previews: PreviewProvider {
     static var previews: some View {
-        SolveButtonSection(equations: Equations(neq: 1), system: Gauss(neq: 1), showFileNamer: .constant(true), filename: .constant(""), showEquationView: .constant(true))
+        SolveButtonSection(equations: Equations(neq: 1), system: Gauss(neq: 1), showFileNamer: .constant(false), filename: .constant(""), showEquationView: .constant(true))
+.previewInterfaceOrientation(.landscapeRight)
     }
 }
