@@ -41,7 +41,9 @@ struct ContentView: View {
     
     
     var body: some View {
+        Background {
         ScrollView([.vertical,.horizontal]) {
+            
             VStack{
                 Text("Gauss Elimination Equation Solver").bold().foregroundColor(.blue).font(.system(size:40))
                 
@@ -65,8 +67,12 @@ struct ContentView: View {
                 Spacer()
             }// VStack
             
+            }
         }// ScrollView
-        
+        .onTapGesture {
+            hideKeyboard()
+        }// Background
+
     }// body
     
     

@@ -22,7 +22,6 @@ struct EquationsView: View {
     
     var body: some View {
         
-        Background {
             
             VStack{
                 
@@ -45,10 +44,9 @@ struct EquationsView: View {
             
             
         } // View
-        .onTapGesture {
-            hideKeyboard()
-        }
-    }// Background
+        
+        
+    
        
 }
 
