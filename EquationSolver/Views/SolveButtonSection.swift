@@ -36,6 +36,7 @@ struct SolveButtonSection: View {
             //Mark: - Gauss Elimination
             Button(action: {
                 
+                hideKeyboard()
                 
                 showEquationView = false
                 
@@ -76,7 +77,8 @@ struct SolveButtonSection: View {
             //Mark: - Gauss Elimination with Maximal Column Pivoting
             Button(action: {
                 
-                
+                hideKeyboard()
+
                 showEquationView = false
                 
                 equations.blankXEText() // blank out x and error texts
@@ -118,7 +120,8 @@ struct SolveButtonSection: View {
             // Mark: Scaled Column Piviot
             Button(action: {
                 
-                
+                hideKeyboard()
+
                 showEquationView = false
                 
                 equations.blankXEText() // blank out x and error texts

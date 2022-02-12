@@ -71,7 +71,9 @@ struct EquationSection: View {
                         .fixedSize()
                     }
                     
-                }.textFieldStyle(RoundedBorderTextFieldStyle()).padding().font(.custom("Arial", size: 15)).fixedSize()
+                }
+                
+//                .textFieldStyle(RoundedBorderTextFieldStyle()).padding().font(.custom("Arial", size: 15)).fixedSize()
                 
                 Group{ // =
                     VStack{ // =
@@ -125,10 +127,12 @@ struct EquationSection: View {
                 
             } // HStack for Equations
             .keyboardType(.decimalPad)
-            
+
       
     }
 }
+
+
 
 struct EquationSection_Previews: PreviewProvider {
     static var previews: some View {

@@ -29,6 +29,8 @@ struct LeftMenuView: View {
             
             // Mark: About
             Button{
+                hideKeyboard()
+
                 showAbout = true
             } label: {
                 Text("About")

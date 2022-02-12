@@ -22,30 +22,34 @@ struct EquationsView: View {
     
     var body: some View {
         
-        
-        
-        VStack{
+        Background {
             
-            EquationSection(equations: equations, system: system)
-            
-            // solver message
-            HStack{
+            VStack{
+                
+                EquationSection(equations: equations, system: system)
+                
+                // solver message
+                HStack{
+                    
+                    
+                    //            TextField("Solver Messages", text: self.$system.solverMessage)
+                    Text("Solver Messages: ")
+                    Text("\(self.system.solverMessage)").foregroundColor(.red)
+                }
+                
+                SolveButtonSection(equations: equations, system: system, showFileNamer: $showFileNamer, filename: $filename, showEquationView: $showEquationView)
                 
                 
-                //            TextField("Solver Messages", text: self.$system.solverMessage)
-                Text("Solver Messages: ")
-                Text("\(self.system.solverMessage)").foregroundColor(.red)
-            }
-            
-            SolveButtonSection(equations: equations, system: system, showFileNamer: $showFileNamer, filename: $filename, showEquationView: $showEquationView)
+                
+            } // View VStack
             
             
-            
-        } // View VStack
-        
-        
-    } // View
-    
+        } // View
+        .onTapGesture {
+            hideKeyboard()
+        }
+    }// Background
+       
 }
 
 struct EquationsView_Previews: PreviewProvider {
