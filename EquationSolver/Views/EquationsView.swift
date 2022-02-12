@@ -30,10 +30,9 @@ struct EquationsView: View {
                 // solver message
                 HStack{
                     
-                    
-                    //            TextField("Solver Messages", text: self.$system.solverMessage)
                     Text("Solver Messages: ")
                     Text("\(self.system.solverMessage)").foregroundColor(.red)
+                    
                 }
                 
                 SolveButtonSection(equations: equations, system: system, showFileNamer: $showFileNamer, filename: $filename, showEquationView: $showEquationView)

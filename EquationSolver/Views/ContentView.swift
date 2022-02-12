@@ -41,9 +41,11 @@ struct ContentView: View {
     
     
     var body: some View {
-        Background {
+        
+//        Background {
+
         ScrollView([.vertical,.horizontal]) {
-            
+
             VStack{
                 Text("Gauss Elimination Equation Solver").bold().foregroundColor(.blue).font(.system(size:40))
                 
@@ -66,12 +68,12 @@ struct ContentView: View {
                 
                 Spacer()
             }// VStack
-            
-            }
         }// ScrollView
+
+//            }// Background
         .onTapGesture {
             hideKeyboard()
-        }// Background
+        }
 
     }// body
     
@@ -83,5 +85,6 @@ struct ContentView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView(numEqs: 2, numEqsText: "2",equations: Equations(neq: 2), system: Gauss(neq: 2))
+.previewInterfaceOrientation(.landscapeRight)
     }
 }
