@@ -11,11 +11,12 @@ import SwiftUI
 struct EquationSection: View {
     @ObservedObject var equations: Equations
     @ObservedObject var system: Gauss
+    @Binding var numSigFigs: String
     
     var body: some View {
        
             HStack{
-                
+//                MARK: - A Matrix
                 Group {  // A Matrix
                     VStack{
                         
@@ -41,6 +42,10 @@ struct EquationSection: View {
                         
                     }
                 }.textFieldStyle(RoundedBorderTextFieldStyle()).padding().font(.custom("Arial", size: 15)).fixedSize()
+                
+                
+                //                MARK: - *
+
                 Group{ // *
                     VStack{
                         Text("")
@@ -55,6 +60,9 @@ struct EquationSection: View {
                     }
                 }
                 
+                
+                //                MARK: - X Matrix
+
                 Group {
                     
                     VStack { // X Matrix
@@ -73,8 +81,8 @@ struct EquationSection: View {
                     
                 }
                 
-//                .textFieldStyle(RoundedBorderTextFieldStyle()).padding().font(.custom("Arial", size: 15)).fixedSize()
-                
+
+//                MARK: - =
                 Group{ // =
                     VStack{ // =
                         Text("")
@@ -89,6 +97,9 @@ struct EquationSection: View {
                     }
                 }
                 
+                
+                //                MARK:  B Matrix
+
                 Group{
                     VStack { // B Matrix
                         Text("B ")
@@ -102,7 +113,7 @@ struct EquationSection: View {
                 }.textFieldStyle(RoundedBorderTextFieldStyle()).padding().font(.custom("Arial", size: 15)).fixedSize()
                 
                 
-                
+//  MARK: - Error
                 Group { // Error
                     VStack{
                         Text("Error")
@@ -126,7 +137,7 @@ struct EquationSection: View {
                 
                 
             } // HStack for Equations
-            .keyboardType(.decimalPad)
+            .keyboardType(.numbersAndPunctuation)
 
       
     }
@@ -136,6 +147,6 @@ struct EquationSection: View {
 
 struct EquationSection_Previews: PreviewProvider {
     static var previews: some View {
-        EquationSection(equations: Equations(neq: 1), system: Gauss(neq: 1))
+        EquationSection(equations: Equations(neq: 1), system: Gauss(neq: 1), numSigFigs: .constant("4"))
     }
 }

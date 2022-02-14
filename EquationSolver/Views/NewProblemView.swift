@@ -55,6 +55,7 @@ struct NewProblemView: View {
            
  
         }
+        .keyboardType(.decimalPad)
     }
 }
 

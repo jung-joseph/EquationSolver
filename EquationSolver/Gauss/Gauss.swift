@@ -163,11 +163,11 @@ class Gauss: ObservableObject {
         if neq == 1 {
             if abs(matrix[0][0]) < smallNumber {
                 x[0] = 0.0
-                solverMessage = "Poorly Conditioned System: Zero or Near Zero Pivot"
+                solverMessage = "SCPSolve: Poorly Conditioned System: Zero or Near Zero Pivot"
                 return false
             }
             x[0] = matrix[0][neq]/matrix[0][0]
-            solverMessage = "Solution Found"
+            solverMessage = "SCPSolve: Solution Found"
             
 //            residual()
             
@@ -185,7 +185,7 @@ class Gauss: ObservableObject {
                 
             }
             if s[i] == 0.0 {
-                solverMessage = "No Unique Solution Exist: All Zeros in a Row"
+                solverMessage = "SCPSolve: No Unique Solution Exist"
                 return false
             }
             nRow[i] = i
@@ -205,7 +205,7 @@ class Gauss: ObservableObject {
             }
             
             if(maxInCol < smallNumber) {
-                solverMessage = "No Unique Solution"
+                solverMessage = "SCPSolve: No Unique Solution"
                 return false
             }
             
@@ -229,7 +229,7 @@ class Gauss: ObservableObject {
         }
         
         if abs(matrix[nRow[neq-1]][neq-1]) < smallNumber {
-            solverMessage = "No Unique Solution"
+            solverMessage = "SCPSolve: No Unique Solution"
             return false
         }
         
@@ -250,7 +250,7 @@ class Gauss: ObservableObject {
         
         
         
-        solverMessage = "Solution Found"
+        solverMessage = "SCPSolve: Solution Found"
 //        residual()
         return true
     }
@@ -282,11 +282,11 @@ class Gauss: ObservableObject {
         if neq == 1 {
             if abs(matrix[0][0]) < smallNumber {
                 x[0] = 0.0
-                solverMessage = "Poorly Conditioned System: Zero or Near Zero Pivot"
+                solverMessage = "MCPSolve: Poorly Conditioned System: Zero or Near Zero Pivot"
                 return false
             }
             x[0] = matrix[0][neq]/matrix[0][0]
-            solverMessage = "Solution Found"
+            solverMessage = "MCPSolve: Solution Found"
 //            residual()
             return true
         }
@@ -311,7 +311,7 @@ class Gauss: ObservableObject {
             }
             
             if(maxInCol < smallNumber) {
-                solverMessage = "No Unique Solution"
+                solverMessage = "MCPSolve: No Unique Solution"
                 return false
             }
             
@@ -335,7 +335,7 @@ class Gauss: ObservableObject {
         }
         
         if abs(matrix[nRow[neq-1]][neq-1]) < smallNumber {
-            solverMessage = "No Unique Solution"
+            solverMessage = "MCPSolve: No Unique Solution"
             return false
         }
         
@@ -356,7 +356,7 @@ class Gauss: ObservableObject {
         
         
         
-        solverMessage = "Solution Found"
+        solverMessage = "MCPSolve: Solution Found"
 //        residual()
         return true
     }
@@ -387,11 +387,11 @@ class Gauss: ObservableObject {
         if neq == 1 {
             if abs(matrix[0][0]) < smallNumber {
                 x[0] = 0.0
-                solverMessage = "Poorly Conditioned System: Zero or Near Zero Pivot"
+                solverMessage = "GaussSolve: Poorly Conditioned System: Zero or Near Zero Pivot"
                 return false
             }
             x[0] = matrix[0][neq]/matrix[0][0]
-            solverMessage = "Solution Found"
+            solverMessage = "GaussSolve: Solution Found"
 //            residual()
             return true
         }
@@ -417,7 +417,7 @@ class Gauss: ObservableObject {
                     }
                 }
                 if(p == -1) {
-                    solverMessage = "No Unique Solution or Possible Poorly Conditioned System"
+                    solverMessage = "GaussSolve: No Unique Solution or Possible Poorly Conditioned System"
                     return false
                 }
                 
@@ -432,7 +432,7 @@ class Gauss: ObservableObject {
                 for j in i+1...neq-1 {
                     
                     if abs(matrix[nRow[i]][i]) < smallNumber {
-                        solverMessage = "Poorly Conditioned System: Zero or Near Zero Pivot"
+                        solverMessage = "GaussSolve: Poorly Conditioned System: Zero or Near Zero Pivot"
                         return false
                     }
                     factor = matrix[nRow[j]][i]/matrix[nRow[i]][i]
@@ -444,7 +444,7 @@ class Gauss: ObservableObject {
             }
             
             if abs(matrix[nRow[neq-1]][neq-1]) < smallNumber {
-                solverMessage = "No Unique Solution: Zero in Last Pivot"
+                solverMessage = "GaussSolve: No Unique Solution: Zero in Last Pivot"
                 return false
             }
         
@@ -462,7 +462,7 @@ class Gauss: ObservableObject {
                 x[i] = (matrix[nRow[i]][neq] + sum)/matrix[nRow[i]][i]
             }
         
-        solverMessage = "Solution Found"
+        solverMessage = "GaussSolve: Solution Found"
 //        residual()
         return true
     }

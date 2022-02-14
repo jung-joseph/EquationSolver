@@ -14,6 +14,7 @@ struct SolveButtonSection: View {
     @Binding var showFileNamer: Bool
     @Binding var filename: String
     @Binding var showEquationView: Bool
+    @Binding var numSigFigs: String
     
     var body: some View {
         VStack {
@@ -61,7 +62,7 @@ struct SolveButtonSection: View {
                         
                         if success { // copy solution to Text
                             system.residual()
-                            solutionToText(equations: equations, system: system)
+                            solutionToText(equations: equations, system: system, numSigFigs: numSigFigs)
                         }
                         
                         showEquationView = true
@@ -103,7 +104,7 @@ struct SolveButtonSection: View {
                         if success { // copy solution to Text
                             
                             system.residual()
-                            solutionToText(equations: equations, system: system)
+                            solutionToText(equations: equations, system: system, numSigFigs: numSigFigs)
                         }
                         
                         showEquationView = true
@@ -142,7 +143,7 @@ struct SolveButtonSection: View {
                         // write solution and error to Text
                         if success { // copy solution to Text
                             system.residual()
-                            solutionToText(equations: equations, system: system)
+                            solutionToText(equations: equations, system: system, numSigFigs: numSigFigs)
                         }
                         showEquationView = true
                         
@@ -249,7 +250,7 @@ struct SolveButtonSection: View {
 
 struct SolveButtonSection_Previews: PreviewProvider {
     static var previews: some View {
-        SolveButtonSection(equations: Equations(neq: 1), system: Gauss(neq: 1), showFileNamer: .constant(false), filename: .constant(""), showEquationView: .constant(true))
+        SolveButtonSection(equations: Equations(neq: 1), system: Gauss(neq: 1), showFileNamer: .constant(false), filename: .constant(""), showEquationView: .constant(true), numSigFigs: .constant("4"))
             .previewInterfaceOrientation(.landscapeRight)
     }
 }

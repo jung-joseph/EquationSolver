@@ -10,10 +10,30 @@ import Foundation
 
 //Mark: - the following routines are at project scope
 
-func solutionToText(equations: Equations, system: Gauss) {
+func solutionToText(equations: Equations, system: Gauss, numSigFigs: String) {
+    
+    let numDecimalPlaces = Int(numSigFigs)! - 1
+    
     for i in 0..<equations.neq {
-        equations.xMatrixText[i] = String(format:"%.3e",system.x[i])
-        equations.errorText[i] = String(format:"%.2e",system.error[i])
+        let negZeroX = String(format:"%.\(numDecimalPlaces)e",-0.0)
+        let negZeroError = String(format:"%.2e",-0.0)
+        
+        // check for negative "-0.0"
+        var xValue = String(format:"%.\(numDecimalPlaces)e",system.x[i])
+        if String(format:"%.\(numDecimalPlaces)e",system.x[i]) == negZeroX {
+             xValue = String(format:"%.\(numDecimalPlaces)e",0.0)
+            print("Captured a -0.0 x")
+        }
+        
+        var eValue = String(format:"%.2e",system.error[i])
+        if String(format:"%.3e",system.x[i]) == negZeroError {
+             eValue = String(format:"%.2e",0.0)
+            print("Captured a -0.0 error")
+
+        }
+        
+        equations.xMatrixText[i] = xValue
+        equations.errorText[i] = eValue
     }
 }
 

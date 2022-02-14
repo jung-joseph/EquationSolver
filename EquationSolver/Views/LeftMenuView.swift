@@ -18,6 +18,8 @@ struct LeftMenuView: View {
     @Binding var readFileContent: String
     @Binding var numEqsText: String
     @Binding var numEqs: Int
+    @Binding var showSettingsView: Bool
+    @Binding var numSigFigs: String
     
     
     @ObservedObject var equations: Equations
@@ -27,7 +29,7 @@ struct LeftMenuView: View {
         VStack{
             
             
-            // Mark: About
+// MARK:  - About
             Button{
                 hideKeyboard()
 
@@ -47,11 +49,41 @@ struct LeftMenuView: View {
             .cornerRadius(10)
             .shadow(radius: 10)
             .padding()
+
+//MARK: - Settings
+                            Button(action:
+                                    {
+                                showSettingsView = true
+                                
+                            }) {
+                            Text("Settings")
+                                    .padding(.horizontal, 4)
+
+                        }
+                        .sheet(isPresented: $showSettingsView) {
+                            SettingsView(numSigFigs: $numSigFigs, showSettingsView: $showSettingsView)
+                            
+                                .onDisappear {
+                                    //                                    print("in Start New Problem")
+                                    
+                                    
+                                    
+                                }
+                        }
+                        .background(Color.red)
+                        .foregroundColor(Color.white)
+                        .cornerRadius(10)
+                        .shadow(radius: 10)
+                        .padding()
+                        
+                        //
+                        
+            
             
                 
                 
                 
-                //Mark: - New Problem
+//MARK: - New Problem
                 Button(action:
                         {
                     showNewProblem = true
@@ -94,7 +126,7 @@ struct LeftMenuView: View {
             //
             
             
-            //Mark: - Read in File
+//MARK: - Read in File
             
             Button(action: {
                 
@@ -170,7 +202,7 @@ struct LeftMenuView: View {
             
             
             
-            //                   Mark: - Load Verification Problems
+//MARK: - Load Verification Problems
             
             
             Button {
@@ -205,6 +237,6 @@ struct LeftMenuView: View {
 
 struct LeftMenuView_Previews: PreviewProvider {
     static var previews: some View {
-        LeftMenuView(showAbout: .constant(false), showNewProblem: .constant(false), showVerification: .constant(false), showEquationView: .constant(false), neqText: .constant("2"), showDocumentPicker: .constant(false), readFileContent: .constant(" "), numEqsText: .constant("2"), numEqs: .constant(2), equations: Equations(neq: 2), system: Gauss(neq: 2))
+        LeftMenuView(showAbout: .constant(false), showNewProblem: .constant(false), showVerification: .constant(false), showEquationView: .constant(false), neqText: .constant("2"), showDocumentPicker: .constant(false), readFileContent: .constant(" "), numEqsText: .constant("2"), numEqs: .constant(2), showSettingsView: .constant(false), numSigFigs: .constant("3"), equations: Equations(neq: 2), system: Gauss(neq: 2))
     }
 }

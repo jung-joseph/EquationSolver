@@ -25,6 +25,8 @@ struct ContentView: View {
     @State private var showFileNamer = false
     @State private var showAbout = false
     @State private var showVerification = false
+    @State private var showSettingsView = false
+    @State private var numSigFigs = "4"
     
     @State var isEditing = false
     
@@ -51,13 +53,13 @@ struct ContentView: View {
                 
                 
                 HStack{
-                    LeftMenuView(showAbout: $showAbout, showNewProblem: $showNewProblem, showVerification: $showVerification, showEquationView: $showEquationView, neqText: $neqText, showDocumentPicker: $showDocumentPicker, readFileContent: $readFileContent, numEqsText: $numEqsText, numEqs: $numEqs, equations: equations, system: system)
+                    LeftMenuView(showAbout: $showAbout, showNewProblem: $showNewProblem, showVerification: $showVerification, showEquationView: $showEquationView, neqText: $neqText, showDocumentPicker: $showDocumentPicker, readFileContent: $readFileContent, numEqsText: $numEqsText, numEqs: $numEqs, showSettingsView: $showSettingsView, numSigFigs: $numSigFigs, equations: equations, system: system)
 
                     
                     //                Mark:  EquationView
                     
                     if(self.showEquationView) {
-                        EquationsView(numEqs: self.numEqs, equations: equations, system: system, showEquationView: $showEquationView)
+                        EquationsView(numEqs: self.numEqs, equations: equations, system: system, showEquationView: $showEquationView, numSigFigs: $numSigFigs)
                         Spacer()
                     } else {
                         Spacer()

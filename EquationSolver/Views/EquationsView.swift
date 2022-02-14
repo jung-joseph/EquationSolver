@@ -19,39 +19,40 @@ struct EquationsView: View {
     //    @State var showOperationMessage: Bool = false
     
     @Binding var showEquationView: Bool
+    @Binding var numSigFigs: String
     
     var body: some View {
         
+        
+        VStack{
             
-            VStack{
+            EquationSection(equations: equations, system: system, numSigFigs: $numSigFigs)
+            
+            // solver message
+            HStack{
                 
-                EquationSection(equations: equations, system: system)
+                Text("Solver Messages: ")
+                Text("\(self.system.solverMessage)").foregroundColor(.red)
                 
-                // solver message
-                HStack{
-                    
-                    Text("Solver Messages: ")
-                    Text("\(self.system.solverMessage)").foregroundColor(.red)
-                    
-                }
-                
-                SolveButtonSection(equations: equations, system: system, showFileNamer: $showFileNamer, filename: $filename, showEquationView: $showEquationView)
-                
-                
-                
-            } // View VStack
+            }
+            
+            SolveButtonSection(equations: equations, system: system, showFileNamer: $showFileNamer, filename: $filename, showEquationView: $showEquationView, numSigFigs: $numSigFigs)
             
             
-        } // View
+            
+        } // View VStack
         
         
+    } // View
     
-       
+    
+    
+    
 }
 
 struct EquationsView_Previews: PreviewProvider {
     static var previews: some View {
-        EquationsView(numEqs:2, equations: Equations(neq: 2), system: Gauss(neq: 2),showEquationView: .constant(true))
+        EquationsView(numEqs:2, equations: Equations(neq: 2), system: Gauss(neq: 2),showEquationView: .constant(true), numSigFigs: .constant("4"))
             .previewInterfaceOrientation(.landscapeLeft)
     }
 }
