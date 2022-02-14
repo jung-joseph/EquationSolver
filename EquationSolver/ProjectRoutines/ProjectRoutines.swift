@@ -22,13 +22,11 @@ func solutionToText(equations: Equations, system: Gauss, numSigFigs: String) {
         var xValue = String(format:"%.\(numDecimalPlaces)e",system.x[i])
         if String(format:"%.\(numDecimalPlaces)e",system.x[i]) == negZeroX {
              xValue = String(format:"%.\(numDecimalPlaces)e",0.0)
-            print("Captured a -0.0 x")
         }
         
         var eValue = String(format:"%.2e",system.error[i])
         if String(format:"%.3e",system.x[i]) == negZeroError {
              eValue = String(format:"%.2e",0.0)
-            print("Captured a -0.0 error")
 
         }
         

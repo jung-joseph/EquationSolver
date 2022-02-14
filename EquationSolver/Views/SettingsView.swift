@@ -27,26 +27,22 @@ struct SettingsView: View {
                     .padding()
                     .font(.custom("Arial", size: 15)).fixedSize()
                     .foregroundColor(Color.black)
-                
-                    .onSubmit {
-                        // check for validity of numSigFig and make sure it is >= 2
-                        if let numDigits = Int(numSigFigs){
-                            if numDigits > 1 {
-                                return
-                            } else {
-                                numSigFigs = "4"
-                            }
-                        } else {
-                            numSigFigs = "4"
-                        }
-                    }
-                    .onTapGesture {
-                        
-                    }
+                    
                 
                 Button("Submit") {
-                    
                     self.showSettingsView = false
+                    // check for validity of numSigFig and make sure it is >= 2
+                    if let numDigits = Int(numSigFigs){
+                        if numDigits > 1 {
+                            return
+                        } else {
+                            numSigFigs = "2"
+                        }
+                    } else {
+                        numSigFigs = "4"
+                    }
+                    
+                   
                 }
                 .background(Color.red)
                 .foregroundColor(Color.white)

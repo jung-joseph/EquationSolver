@@ -93,10 +93,7 @@ struct SolveButtonSection: View {
                             self.showEquationView = true
                             return
                         }
-                        
-                        print(system.solverMessage)
-                        
-                        
+                                                
                         
                         let success = self.system.gaussMCPSolve()
                         
