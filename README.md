@@ -12,3 +12,6 @@
 "References"
 "1. Burden, Richard and Faires, J. Douglas; Numerical Analysis (third edition); Prindle, Weber & Schmit, Boston, 1985. "
 "2. 3x3 Round-Off Verification Problem: https://www.rajgunesh.com/resources/downloads/numerical/gaussianelimination.pdf"
+
+"Acknowledgment"
+"A special word of appreciation for Dale Moseley is warranted. Dale's review comments helped to make this app much more robust and friendly."

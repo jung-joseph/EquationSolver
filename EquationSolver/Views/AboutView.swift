@@ -130,7 +130,17 @@ struct AboutView: View {
                             //                        }
                         }
                     }
-                    
+                    VStack{
+                        Text("Acknowledgment")
+                            .foregroundColor(Color.black)
+                            .font(.title)
+                            .padding(EdgeInsets(top: 25, leading: 25, bottom: 0, trailing: 0))
+                        Text("A special word of appreciation for Dale Moseley is warranted. Dale's review comments helped to make this app much more robust and friendly.")
+                            .font( Font.system(size: 14))
+                            .foregroundColor(Color.black)
+                            .padding(EdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 0))
+                        
+                    }
                     Spacer()
                     Spacer()
                 }

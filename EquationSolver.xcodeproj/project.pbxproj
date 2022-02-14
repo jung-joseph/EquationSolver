@@ -139,6 +139,7 @@
 		538E5087244C93780055911E /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				534E749727B0089A00CC8943 /* AboutView.swift */,
 				53ED498127B7F7C4001E05E9 /* Background.swift */,
 				534BCECB244679380098EE80 /* ContentView.swift */,
 				538E5088244C939E0055911E /* EquationsView.swift */,
@@ -146,7 +147,6 @@
 				539FC13827B30F0500D2C703 /* SolveButtonSection.swift */,
 				538515AC27A4A94C008DAA98 /* FileNamer.swift */,
 				538515AE27A5E746008DAA98 /* NewProblemView.swift */,
-				534E749727B0089A00CC8943 /* AboutView.swift */,
 				534E4D6727B15A4500029E55 /* VerificationProblemsView.swift */,
 				53ED48A327B4BC01001E05E9 /* LeftMenuView.swift */,
 				53ED499D27B99DB3001E05E9 /* SettingsView.swift */,
