@@ -35,6 +35,8 @@ struct EquationSection: View {
                                     
                                     
                                     TextField(self.equations.aMatrixText[i][j], text: $equations.aMatrixText[i][j])
+                                    // check for valid number here
+                                    .foregroundColor(Double(self.equations.aMatrixText[i][j]) != nil ? Color.black : Color.red)
                                 }
                             }
                             
@@ -70,7 +72,6 @@ struct EquationSection: View {
                             .bold()
                         
                         ForEach(0..<self.equations.xMatrixText.count) {i in
-                            //                            TextField(self.equations.xMatrixText[i], text: self.$equations.xMatrixText[i])
                             Text("\(self.equations.xMatrixText[i])")
                             
                         }
@@ -107,7 +108,8 @@ struct EquationSection: View {
                         
                         ForEach(0..<self.equations.bMatrixText.count) {i in
                             TextField(self.equations.bMatrixText[i], text: self.$equations.bMatrixText[i])
-                            
+                                .foregroundColor(Double(self.equations.bMatrixText[i]) != nil ? Color.black : Color.red)
+
                         }
                     }
                 }.textFieldStyle(RoundedBorderTextFieldStyle()).padding().font(.custom("Arial", size: 15)).fixedSize()
