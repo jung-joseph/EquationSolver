@@ -21,8 +21,11 @@ struct FileNamer: View {
 
             TextField("Enter File Name", text: $fileName)
                 .foregroundColor(.black)
+                .background(.white)
                 .padding()
                 .fixedSize()
+                .colorScheme(.light)
+
             
             Button("Submit") {
                 // check for .txt extension and add if missing

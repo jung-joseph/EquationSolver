@@ -37,6 +37,8 @@ struct EquationSection: View {
                                     TextField(self.equations.aMatrixText[i][j], text: $equations.aMatrixText[i][j])
                                     // check for valid number here
                                     .foregroundColor(Double(self.equations.aMatrixText[i][j]) != nil ? Color.black : Color.red)
+                                    .colorScheme(.light)
+
                                 }
                             }
                             
@@ -99,7 +101,7 @@ struct EquationSection: View {
                 }
                 
                 
-                //                MARK:  B Matrix
+                //                MARK: - B Matrix
 
                 Group{
                     VStack { // B Matrix
@@ -109,6 +111,8 @@ struct EquationSection: View {
                         ForEach(0..<self.equations.bMatrixText.count) {i in
                             TextField(self.equations.bMatrixText[i], text: self.$equations.bMatrixText[i])
                                 .foregroundColor(Double(self.equations.bMatrixText[i]) != nil ? Color.black : Color.red)
+                                .colorScheme(.light)
+
 
                         }
                     }

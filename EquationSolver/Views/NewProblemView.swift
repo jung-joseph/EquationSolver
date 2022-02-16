@@ -34,6 +34,8 @@ struct NewProblemView: View {
                 .padding()
                 .font(.custom("Arial", size: 15)).fixedSize()
                 .foregroundColor(isEditing ? Color.green : Color.black)
+                .colorScheme(.light)
+
             
                 .onSubmit {
                     self.isEditing = true

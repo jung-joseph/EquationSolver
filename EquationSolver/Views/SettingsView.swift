@@ -27,6 +27,8 @@ struct SettingsView: View {
                     .padding()
                     .font(.custom("Arial", size: 15)).fixedSize()
                     .foregroundColor(Color.black)
+                    .colorScheme(.light)
+
                     
                 
                 Button("Submit") {
