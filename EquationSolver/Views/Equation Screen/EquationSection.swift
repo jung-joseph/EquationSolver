@@ -101,7 +101,7 @@ struct EquationSection: View {
                 }
                 
                 
-                //                MARK:  B Matrix
+                //                MARK: - B Matrix
 
                 Group{
                     VStack { // B Matrix
@@ -111,6 +111,7 @@ struct EquationSection: View {
                             TextField(self.equations.bMatrixText[i], text: self.$equations.bMatrixText[i])
                                 .foregroundColor(Double(self.equations.bMatrixText[i]) != nil ? Color.black : Color.red)
                                 .colorScheme(.light)
+
 
                         }
 //                        ForEach(0..<self.equations.bMatrixText.count) {i in
