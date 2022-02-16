@@ -86,7 +86,10 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView(numEqs: 2, numEqsText: "2",equations: Equations(neq: 2), system: Gauss(neq: 2))
+        ForEach(ColorScheme.allCases, id: \.self){
+            ContentView(numEqs: 2, numEqsText: "2",equations: Equations(neq: 2), system: Gauss(neq: 2))
+            .preferredColorScheme($0)
 .previewInterfaceOrientation(.landscapeRight)
+        }
     }
 }

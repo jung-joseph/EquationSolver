@@ -37,6 +37,8 @@ struct EquationSection: View {
                                     TextField(self.equations.aMatrixText[i][j], text: $equations.aMatrixText[i][j])
                                     // check for valid number here
                                     .foregroundColor(Double(self.equations.aMatrixText[i][j]) != nil ? Color.black : Color.red)
+                                    .colorScheme(.light)
+
                                 }
                             }
                             
@@ -105,12 +107,17 @@ struct EquationSection: View {
                     VStack { // B Matrix
                         Text("B ")
                             .bold()
-                        
                         ForEach(0..<self.equations.bMatrixText.count) {i in
                             TextField(self.equations.bMatrixText[i], text: self.$equations.bMatrixText[i])
                                 .foregroundColor(Double(self.equations.bMatrixText[i]) != nil ? Color.black : Color.red)
+                                .colorScheme(.light)
 
                         }
+//                        ForEach(0..<self.equations.bMatrixText.count) {i in
+//                            TextField(self.equations.bMatrixText[i], text: self.$equations.bMatrixText[i])
+//                                .foregroundColor(Double(self.equations.bMatrixText[i]) != nil ? Color.black : Color.red)
+//
+//                        }
                     }
                 }.textFieldStyle(RoundedBorderTextFieldStyle()).padding().font(.custom("Arial", size: 15)).fixedSize()
                 
@@ -149,6 +156,8 @@ struct EquationSection: View {
 
 struct EquationSection_Previews: PreviewProvider {
     static var previews: some View {
-        EquationSection(equations: Equations(neq: 1), system: Gauss(neq: 1), numSigFigs: .constant("4"))
+            EquationSection(equations: Equations(neq: 2), system: Gauss(neq: 2), numSigFigs: .constant("4"))
+            
+       
     }
 }
